@@ -1,5 +1,12 @@
 // API Keys stored in file (replace with your actual keys)
-const apiKeys = ['your_api_key_1', 'your_api_key_2', 'your_api_key_3']; // Ganti dengan keys Anda
+const apiKeys = ["2ac6db40b186ebddcd359782c652552defdb3745d8e25124acf53a45ed535549",
+ "7f28014dc52133378100170da05e50b5d9c26d45f3af5c891c2141aee9fbc58b",
+ "615ab71a6766295a82b529c695db5956d2ae943cc1e8c3cc470ecbe97e0f772f",
+ "9341744c45536d9370fba2e953bfe538d8465019d7f9582a4e61331e66b260cb",
+ "e6b2851dbfbc98817f92c9f0f53a2506ee097b7abc8d9f82349b77b308894234",
+ "fed89247615189b1640800f4ca7b1df07f159df5d84446cbce206ea95349e2bd",
+ "da3fb578e45b4d1117ccc1a4d23b5be0b0f8a9608806731e882580bf0b296f89",
+ "87792bbc7341e34e1dd27304bf6380dd28e4e0d504f5606439044ddc3f43bdb3"]; // Ganti dengan keys Anda
 
 document.getElementById('reactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
