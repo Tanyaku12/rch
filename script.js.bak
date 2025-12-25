@@ -1,0 +1,72 @@
+// API Keys stored in file (replace with your actual keys)
+const apiKeys = ['your_api_key_1', 'your_api_key_2', 'your_api_key_3']; // Ganti dengan keys Anda
+
+document.getElementById('reactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const link = document.getElementById('link').value.trim();
+    const emojiInput = document.getElementById('emoji').value.trim();
+    
+    if (!link || !emojiInput) {
+        showResult('Error', 'Link and emoji are required!', 'error');
+        return;
+    }
+    
+    // Process emoji: replace commas with spaces, split, filter, join with commas
+    const emoji = emojiInput.replace(/,/g, ' ').split(/\s+/).filter(e => e.trim()).join(',');
+    
+    if (apiKeys.length === 0) {
+        showResult('Error', 'No API keys available!', 'error');
+        return;
+    }
+    
+    showResult('Processing', 'Sending react... ⏳', 'success');
+    
+    let success = false;
+    let lastError = 'Unknown error';
+    
+    for (const apiKey of apiKeys) {
+        try {
+            const url = `https://react.whyux-xec.my.id/api/rch?link=${encodeURIComponent(link)}&emoji=${encodeURIComponent(emoji)}`;
+            const res = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "x-api-key": apiKey
+                }
+            });
+            
+            const json = await res.json();
+            
+            if (json.success) {
+                const teks = `✅ React Sent!\n\n🔗 Target: ${json.link}\n🎭 Emoji: ${json.emojis.replace(/,/g, ' ')}\n\n🚀 Powered by React Channel Tool`;
+                showResult('Success', teks, 'success');
+                success = true;
+                break;
+            } else {
+                lastError = json.details?.message || json.error || 'Unknown error';
+                if (!lastError.toLowerCase().includes('limit') && !lastError.toLowerCase().includes('coin')) {
+                    break;
+                }
+            }
+        } catch (e) {
+            console.error(e);
+            lastError = "System error occurred";
+        }
+    }
+    
+    if (!success) {
+        const teks = `❌ Failed Response\n\n📝 Message: ${lastError}\n💡 Info: API keys exhausted, get new keys at https://asitha.top/login`;
+        showResult('Error', teks, 'error');
+    }
+});
+
+function showResult(title, message, type) {
+    const resultDiv = document.getElementById('result');
+    const titleEl = document.getElementById('resultTitle');
+    const messageEl = document.getElementById('resultMessage');
+    
+    titleEl.textContent = title;
+    messageEl.textContent = message;
+    resultDiv.className = `result ${type}`;
+    resultDiv.classList.remove('hidden');
+}

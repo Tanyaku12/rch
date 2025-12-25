@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Channel WhatsApp Tools</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">🚀 React Channel Tool</h1>
+        <p class="subtitle">React to WhatsApp channel posts with emojis. Powered by Pareh!</p>
+        
+        <form id="reactForm">
+            <div class="input-group">
+                <label for="link">Link Post:</label>
+                <input type="url" id="link" placeholder="https://whatsapp.com/channel/xxx/123" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="emoji">Emoji (pisahkan dengan spasi):</label>
+                <input type="text" id="emoji" placeholder="😂 😱" required>
+            </div>
+            
+            <button type="submit" class="submit-btn">Send React</button>
+        </form>
+        
+        <div id="result" class="result hidden">
+            <h2 id="resultTitle"></h2>
+            <p id="resultMessage"></p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
